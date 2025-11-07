@@ -20,3 +20,4 @@ Contenu:
 - Page d'accueil (vitrine) : `app/page.js` -> component `NexulVitrine`
 - Dashboard connecté (wallet) : `/dashboard` -> component `FullDashboard`
 - Tailwind configuré, i18next minimal inclus.
+mise à jour auto Fri Nov  7 17:56:37     2025

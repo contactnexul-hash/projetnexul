@@ -15,18 +15,21 @@ export default function CharityPage() {
       <CryptoLive />
       <Wallet />
 
-      <section>
+      <main>
         <h1>Charity Pole</h1>
-        <p>Détails et actions du pôle Charity.</p>
-        <p>Liens vers les autres pôles :</p>
-        <ul>
-          <li><Link href="/poles/animals">Animals</Link></li>
-          <li><Link href="/poles/education">Education</Link></li>
-          <li><Link href="/poles/environment">Environment</Link></li>
-          <li><Link href="/poles/impact">Impact</Link></li>
-          <li><Link href="/poles/innovation">Innovation</Link></li>
-        </ul>
-      </section>
+        <p>Ici vous pouvez ajouter les détails et actions spécifiques pour le pôle Charity.</p>
+
+        <section>
+          <h2>Liens vers les autres pôles :</h2>
+          <ul>
+            <li><Link href="/poles/animals">Animals</Link></li>
+            <li><Link href="/poles/education">Education</Link></li>
+            <li><Link href="/poles/environment">Environment</Link></li>
+            <li><Link href="/poles/impact">Impact</Link></li>
+            <li><Link href="/poles/innovation">Innovation</Link></li>
+          </ul>
+        </section>
+      </main>
     </div>
   );
 }

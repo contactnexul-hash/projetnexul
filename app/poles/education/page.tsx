@@ -15,18 +15,21 @@ export default function EducationPage() {
       <CryptoLive />
       <Wallet />
 
-      <section>
+      <main>
         <h1>Education Pole</h1>
-        <p>Détails et actions du pôle Education.</p>
-        <p>Liens vers les autres pôles :</p>
-        <ul>
-          <li><Link href="/poles/animals">Animals</Link></li>
-          <li><Link href="/poles/charity">Charity</Link></li>
-          <li><Link href="/poles/environment">Environment</Link></li>
-          <li><Link href="/poles/impact">Impact</Link></li>
-          <li><Link href="/poles/innovation">Innovation</Link></li>
-        </ul>
-      </section>
+        <p>Ici vous pouvez ajouter les détails et actions spécifiques pour le pôle Education.</p>
+
+        <section>
+          <h2>Liens vers les autres pôles :</h2>
+          <ul>
+            <li><Link href="/poles/animals">Animals</Link></li>
+            <li><Link href="/poles/charity">Charity</Link></li>
+            <li><Link href="/poles/environment">Environment</Link></li>
+            <li><Link href="/poles/impact">Impact</Link></li>
+            <li><Link href="/poles/innovation">Innovation</Link></li>
+          </ul>
+        </section>
+      </main>
     </div>
   );
 }

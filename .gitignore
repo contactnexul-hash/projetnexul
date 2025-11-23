@@ -1,3 +1,4 @@
 dev
 
 .vercel
+node_modules/

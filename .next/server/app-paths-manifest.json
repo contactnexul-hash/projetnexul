@@ -1,0 +1,10 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/poles/animals/page": "app/poles/animals/page.js",
+  "/poles/charity/page": "app/poles/charity/page.js",
+  "/poles/education/page": "app/poles/education/page.js",
+  "/page": "app/page.js",
+  "/poles/environment/page": "app/poles/environment/page.js",
+  "/poles/impact/page": "app/poles/impact/page.js",
+  "/poles/innovation/page": "app/poles/innovation/page.js"
+}

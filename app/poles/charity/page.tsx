@@ -8,36 +8,39 @@ import Link from "next/link";
 
 export default function CharityPage() {
   const [state, setState] = useState(null);
+  const poles = ["animals","charity","education","environment","impact","innovation"];
 
   return (
-    <div style={{ fontFamily: 'Arial, sans-serif', padding: '10px' }}>
-      <header style={{ backgroundColor: '#f0f0f0', padding: '10px' }}>
+    <div style={{
+      fontFamily:'Montserrat,sans-serif',color:'#f0f0f0',backgroundColor:'#1a1a1a',padding:'20px',minHeight:'100vh'
+    }}>
+      <header style={{background:'linear-gradient(90deg,#0d0d0d,#1f1f1f)',padding:'20px',boxShadow:'0 4px 6px rgba(0,0,0,0.5)'}}>
         <Navbar />
       </header>
 
-      <section style={{ backgroundColor: '#d0f0d0', margin: '10px 0', padding: '10px' }}>
-        <h2>Crypto en direct</h2>
-        <CryptoLive />
+      <nav style={{display:'flex',gap:'15px',margin:'20px 0'}}>
+        {poles.map(p=>(
+          <Link key={p} href={"/poles/"+p} style={{color:'#00ffff',textDecoration:'none'}}>
+            {p.charAt(0).toUpperCase()+p.slice(1)}
+          </Link>
+        ))}
+      </nav>
+
+      <section style={{
+        margin:'20px 0',padding:'20px',backgroundColor:'#2a2a2a',borderRadius:'12px',
+        boxShadow:'0 2px 10px rgba(0,0,0,0.3)',transition:'transform 0.3s ease, boxShadow 0.3s ease'
+      }}
+      onMouseEnter={e=>e.currentTarget.style.boxShadow='0 6px 15px rgba(0,255,255,0.5)'}
+      onMouseLeave={e=>e.currentTarget.style.boxShadow='0 2px 10px rgba(0,0,0,0.3)'}
+      >
+        <h1 style={{fontSize:'2.5rem',color:'#00ffff'}}>Charity Pole</h1>
+        <p style={{fontSize:'1.1rem',lineHeight:'1.6'}}>
+          Toutes les actions et projets du pôle Charity, avec style Luxe & Tech et hover premium.
+        </p>
       </section>
 
-      <section style={{ backgroundColor: '#f0d0d0', margin: '10px 0', padding: '10px' }}>
-        <h2>Wallet</h2>
-        <Wallet />
-      </section>
-
-      <main style={{ backgroundColor: '#d0d0f0', margin: '10px 0', padding: '10px' }}>
-        <h1>Charity Pole</h1>
-        <p>Contenu spécifique et actions détaillées pour le pôle Charity.</p>
-
-        <h3>Liens vers les autres pôles :</h3>
-        <ul>
-          <li><Link href="/poles/animals" style={{color: 'blue'}}>Animals</Link></li>
-          <li><Link href="/poles/education" style={{color: 'blue'}}>Education</Link></li>
-          <li><Link href="/poles/environment" style={{color: 'blue'}}>Environment</Link></li>
-          <li><Link href="/poles/impact" style={{color: 'blue'}}>Impact</Link></li>
-          <li><Link href="/poles/innovation" style={{color: 'blue'}}>Innovation</Link></li>
-        </ul>
-      </main>
+      <CryptoLive />
+      <Wallet />
     </div>
   );
 }

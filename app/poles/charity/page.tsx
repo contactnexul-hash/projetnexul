@@ -12,20 +12,16 @@ export default function CharityPage() {
   return (
     <div>
       <Navbar />
-
-      {/* Section Crypto en direct */}
       <CryptoLive />
-
-      {/* Section Wallet */}
       <Wallet />
 
-      {/* Contenu spécifique du pôle Charity */}
       <section>
         <h1>Charity Pole</h1>
         <p>Ici tu peux détailler toutes les actions et explications du pôle Charity.</p>
         <p>Liens vers les autres pôles :</p>
         <ul>
           <li><Link href="/poles/animals">Animals</Link></li>
+          <li><Link href="/poles/charity">Charity</Link></li>
           <li><Link href="/poles/education">Education</Link></li>
           <li><Link href="/poles/environment">Environment</Link></li>
           <li><Link href="/poles/impact">Impact</Link></li>

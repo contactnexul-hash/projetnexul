@@ -12,32 +12,22 @@ export default function AnimalsPage() {
   return (
     <div>
       <Navbar />
-
       <CryptoLive />
-
       <Wallet />
 
       <section>
         <h1>Animals Pole</h1>
-        <p>
-          Ce pôle gère toutes les informations et actions liées aux animaux.
-        </p>
-
-        <div>
-          <Link href="/app/poles/animals/donate">
-            <button>Faire un don</button>
-          </Link>
-          <Link href="/app/poles/animals/projects">
-            <button>Voir les projets</button>
-          </Link>
-        </div>
+        <p>Ici tu peux détailler toutes les actions et explications du pôle Animals.</p>
+        <p>Liens vers les autres pôles :</p>
+        <ul>
+          <li><Link href="/poles/animals">Animals</Link></li>
+          <li><Link href="/poles/charity">Charity</Link></li>
+          <li><Link href="/poles/education">Education</Link></li>
+          <li><Link href="/poles/environment">Environment</Link></li>
+          <li><Link href="/poles/impact">Impact</Link></li>
+          <li><Link href="/poles/innovation">Innovation</Link></li>
+        </ul>
       </section>
-
-      <footer>
-        <Link href="/app/poles/education">→ Education</Link> | 
-        <Link href="/app/poles/charity">→ Charity</Link>
-      </footer>
     </div>
   );
 }
-

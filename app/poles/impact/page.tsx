@@ -10,25 +10,33 @@ export default function ImpactPage() {
   const [state, setState] = useState(null);
 
   return (
-    <div>
-      <Navbar />
-      <CryptoLive />
-      <Wallet />
+    <div style={{ fontFamily: 'Arial, sans-serif', padding: '10px' }}>
+      <header style={{ backgroundColor: '#f0f0f0', padding: '10px' }}>
+        <Navbar />
+      </header>
 
-      <main>
+      <section style={{ backgroundColor: '#d0f0d0', margin: '10px 0', padding: '10px' }}>
+        <h2>Crypto en direct</h2>
+        <CryptoLive />
+      </section>
+
+      <section style={{ backgroundColor: '#f0d0d0', margin: '10px 0', padding: '10px' }}>
+        <h2>Wallet</h2>
+        <Wallet />
+      </section>
+
+      <main style={{ backgroundColor: '#d0d0f0', margin: '10px 0', padding: '10px' }}>
         <h1>Impact Pole</h1>
-        <p>Ici vous pouvez ajouter les détails et actions spécifiques pour le pôle Impact.</p>
+        <p>Contenu spécifique et actions détaillées pour le pôle Impact.</p>
 
-        <section>
-          <h2>Liens vers les autres pôles :</h2>
-          <ul>
-            <li><Link href="/poles/animals">Animals</Link></li>
-            <li><Link href="/poles/charity">Charity</Link></li>
-            <li><Link href="/poles/education">Education</Link></li>
-            <li><Link href="/poles/environment">Environment</Link></li>
-            <li><Link href="/poles/innovation">Innovation</Link></li>
-          </ul>
-        </section>
+        <h3>Liens vers les autres pôles :</h3>
+        <ul>
+          <li><Link href="/poles/animals" style={{color: 'blue'}}>Animals</Link></li>
+          <li><Link href="/poles/charity" style={{color: 'blue'}}>Charity</Link></li>
+          <li><Link href="/poles/education" style={{color: 'blue'}}>Education</Link></li>
+          <li><Link href="/poles/environment" style={{color: 'blue'}}>Environment</Link></li>
+          <li><Link href="/poles/innovation" style={{color: 'blue'}}>Innovation</Link></li>
+        </ul>
       </main>
     </div>
   );

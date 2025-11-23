@@ -17,10 +17,9 @@ export default function AnimalsPage() {
 
       <section>
         <h1>Animals Pole</h1>
-        <p>Ici tu peux détailler toutes les actions et explications du pôle Animals.</p>
+        <p>Détails et actions du pôle Animals.</p>
         <p>Liens vers les autres pôles :</p>
         <ul>
-          <li><Link href="/poles/animals">Animals</Link></li>
           <li><Link href="/poles/charity">Charity</Link></li>
           <li><Link href="/poles/education">Education</Link></li>
           <li><Link href="/poles/environment">Environment</Link></li>

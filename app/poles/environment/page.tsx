@@ -17,13 +17,12 @@ export default function EnvironmentPage() {
 
       <section>
         <h1>Environment Pole</h1>
-        <p>Ici tu peux détailler toutes les actions et explications du pôle Environment.</p>
+        <p>Détails et actions du pôle Environment.</p>
         <p>Liens vers les autres pôles :</p>
         <ul>
           <li><Link href="/poles/animals">Animals</Link></li>
           <li><Link href="/poles/charity">Charity</Link></li>
           <li><Link href="/poles/education">Education</Link></li>
-          <li><Link href="/poles/environment">Environment</Link></li>
           <li><Link href="/poles/impact">Impact</Link></li>
           <li><Link href="/poles/innovation">Innovation</Link></li>
         </ul>

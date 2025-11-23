@@ -17,7 +17,7 @@ export default function InnovationPage() {
 
       <section>
         <h1>Innovation Pole</h1>
-        <p>Ici tu peux détailler toutes les actions et explications du pôle Innovation.</p>
+        <p>Détails et actions du pôle Innovation.</p>
         <p>Liens vers les autres pôles :</p>
         <ul>
           <li><Link href="/poles/animals">Animals</Link></li>
@@ -25,7 +25,6 @@ export default function InnovationPage() {
           <li><Link href="/poles/education">Education</Link></li>
           <li><Link href="/poles/environment">Environment</Link></li>
           <li><Link href="/poles/impact">Impact</Link></li>
-          <li><Link href="/poles/innovation">Innovation</Link></li>
         </ul>
       </section>
     </div>

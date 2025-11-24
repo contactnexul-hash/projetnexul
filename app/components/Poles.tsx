@@ -1,5 +1,5 @@
 import React from "react";
-import { BadgeCheck, Heart, Leaf, Lightbulb, BookOpen, Users, Paw } from "lucide-react";
+import { BadgeCheck, Heart, Leaf, Lightbulb, BookOpen, Users } from "lucide-react";
 
 const poles = [
   {
@@ -20,13 +20,14 @@ const poles = [
     name: "Charity",
     color: "bg-red-600",
     icon: <Heart size={24} />,
-    description: "Soutien ciblé aux causes importantes.",
+    description: "Soutenir des causes qui comptent.",
     actions: [
-      "Collectes de fonds",
-      "Partenariats associations",
-      "Événements caritatifs",
+      "Dons ciblés pour associations",
+      "Collectes alimentaires",
+      "Projets humanitaires",
       "Campagnes de sensibilisation",
-      "Dons matériels et financiers"
+      "Bénévolat dans des refuges",
+      "Crowdfunding pour initiatives sociales"
     ],
   },
   {
@@ -35,11 +36,12 @@ const poles = [
     icon: <BookOpen size={24} />,
     description: "Programmes et formations pour tous.",
     actions: [
-      "Cours et ateliers",
-      "Formation Web3 & Tech",
-      "Tutorats et mentorats",
-      "Sensibilisation éco-responsable",
-      "Bibliothèques et ressources en ligne"
+      "Cours en ligne gratuits",
+      "Ateliers pratiques",
+      "Mentorat et tutorat",
+      "Échanges interculturels",
+      "Bibliothèques collaboratives",
+      "Crowdfunding pour projets éducatifs"
     ],
   },
   {
@@ -48,53 +50,63 @@ const poles = [
     icon: <Lightbulb size={24} />,
     description: "Tech & Web3 pour l'impact.",
     actions: [
-      "Projets blockchain responsables",
-      "Hackathons pour l'impact",
-      "Startups sociales",
-      "R&D sur solutions durables",
-      "Partenariats technologiques"
+      "Hackathons solidaires",
+      "Projets blockchain pour le social",
+      "Startups à impact",
+      "Applications éco-responsables",
+      "Prototypage rapide",
+      "Crowdfunding pour innovation verte"
     ],
   },
   {
     name: "Bénévolat",
     color: "bg-purple-600",
     icon: <BadgeCheck size={24} />,
-    description: "Engage-toi et impacte localement.",
+    description: "Engage-toi, impacte localement.",
     actions: [
-      "Actions de terrain",
-      "Mentorat et soutien",
-      "Collectes et distributions",
-      "Événements communautaires",
-      "Plateformes de volontariat"
+      "Participation à des événements locaux",
+      "Aide aux associations",
+      "Soutien aux communautés",
+      "Projets collectifs",
+      "Crowdfunding pour initiatives locales",
+      "Actions citoyennes"
     ],
   },
   {
-    name: "Communauté",
-    color: "bg-orange-500",
+    name: "Communauté & Animaux",
+    color: "bg-pink-600",
     icon: <Users size={24} />,
-    description: "Rassemblements, partenariats et entraide.",
+    description: "Rassemblements, partenariats et protection animale.",
     actions: [
-      "Événements locaux",
-      "Meetups et conférences",
-      "Groupes d'entraide",
-      "Forums et discussions",
-      "Partenariats associatifs"
-    ],
-  },
-  {
-    name: "Animaux",
-    color: "bg-pink-500",
-    icon: <Paw size={24} />,
-    description: "Protection et bien-être des animaux.",
-    actions: [
-      "Refuges et sauvetages",
-      "Campagnes de sensibilisation",
-      "Adoptions responsables",
-      "Actions locales de protection",
-      "Crowdfunding pour causes animales"
+      "Adoption et soutien aux refuges",
+      "Campagnes de sensibilisation animale",
+      "Événements communautaires",
+      "Partenariats solidaires",
+      "Crowdfunding pour projets animaux",
+      "Activités locales pour rassembler la communauté"
     ],
   },
 ];
 
-export default poles;
+export default function Poles() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+      {poles.map((pole, idx) => (
+        <div key={idx} className={`rounded-2xl shadow-lg p-6 ${pole.color} text-white`}>
+          <div className="flex items-center space-x-3 mb-4">
+            {pole.icon}
+            <h2 className="text-xl font-bold">{pole.name}</h2>
+          </div>
+          <p className="mb-4">{pole.description}</p>
+          <ul className="list-disc list-inside space-y-1">
+            {pole.actions.map((action, i) => (
+              <li key={i}>{action}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 

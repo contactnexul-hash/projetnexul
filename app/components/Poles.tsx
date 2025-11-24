@@ -3,6 +3,7 @@ import { BadgeCheck, Heart, Leaf, Lightbulb, BookOpen, Users } from "lucide-reac
 
 export const poles = [
   {
+    key: "environnement",
     name: "Environnement",
     color: "bg-green-800",
     icon: <Leaf size={24} />,
@@ -19,71 +20,79 @@ export const poles = [
     link: "/pols/environment"
   },
   {
+    key: "charity",
     name: "Charity",
     color: "bg-red-700",
     icon: <Heart size={24} />,
     description: "Soutien ciblé aux causes qui comptent",
     actions: [
       "Collectes de fonds",
-      "Distribution de matériel",
-      "Campagnes de sensibilisation"
+      "Soutien aux associations",
+      "Campagnes solidaires"
     ],
     image: "/images/charity.jpg",
     link: "/pols/charity"
   },
   {
+    key: "education",
     name: "Éducation",
-    color: "bg-blue-700",
+    color: "bg-blue-800",
     icon: <BookOpen size={24} />,
     description: "Programmes et formations pour tous",
     actions: [
-      "Cours et tutoriels",
-      "Formations gratuites",
-      "Ateliers pratiques"
+      "Cours en ligne",
+      "Ateliers et formations",
+      "Mentorat",
+      "Bibliothèques et ressources éducatives"
     ],
     image: "/images/education.jpg",
     link: "/pols/education"
   },
   {
+    key: "innovation",
     name: "Innovation",
-    color: "bg-purple-700",
+    color: "bg-purple-800",
     icon: <Lightbulb size={24} />,
     description: "Tech & Web3 pour l'impact",
     actions: [
-      "Projets blockchain",
-      "Hackathons durables",
-      "Startups responsables"
+      "Projets Web3 éthiques",
+      "Hackathons",
+      "Solutions durables et innovantes",
+      "Crowdfunding pour startups sociales"
     ],
     image: "/images/innovation.jpg",
     link: "/pols/innovation"
   },
   {
+    key: "benevolat",
     name: "Bénévolat",
-    color: "bg-yellow-700",
+    color: "bg-yellow-800",
     icon: <BadgeCheck size={24} />,
     description: "Engage-toi, impacte localement",
     actions: [
-      "Projets communautaires",
-      "Aide aux associations",
-      "Organisation d’événements"
+      "Participer à des missions locales",
+      "Soutenir des associations",
+      "Organisation d'événements communautaires"
     ],
     image: "/images/volunteer.jpg",
-    link: "/pols/volunteer"
+    link: "/pols/benevolat"
   },
   {
+    key: "communaute",
     name: "Communauté",
-    color: "bg-pink-700",
+    color: "bg-orange-800",
     icon: <Users size={24} />,
-    description: "Rassemblements, partenariats et animaux",
+    description: "Rassemblements et partenariats",
     actions: [
-      "Meetups locaux",
-      "Échanges culturels",
-      "Projets animaliers"
+      "Événements communautaires",
+      "Rencontres et conférences",
+      "Partenariats locaux"
     ],
     image: "/images/community.jpg",
-    link: "/pols/community"
+    link: "/pols/communaute"
   }
 ];
+
 
 
 

@@ -1,31 +1,27 @@
 import React from "react";
 import { poles } from "./Poles";
+import locales from "./locales";
 
 interface PolesDisplayProps {
-  lang?: string; // facultatif si tu veux gérer la langue
+  poles: typeof poles;
+  lang: string;
 }
 
-const PolesDisplay: React.FC<PolesDisplayProps> = ({ lang = "fr" }) => {
+const PolesDisplay: React.FC<PolesDisplayProps> = ({ poles, lang }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-      {poles.map((pole) => (
-        <div key={pole.key} className={`rounded-2xl shadow-lg overflow-hidden ${pole.color} text-white`}>
-          <img src={pole.image} alt={pole.name} className="w-full h-40 object-cover" />
+      {poles.map((pole, idx) => (
+        <div key={idx} className={`rounded-2xl shadow-lg overflow-hidden ${pole.color} text-white`}>
+          <img src={pole.image} alt={locales[lang].poles[pole.name]} className="w-full h-40 object-cover" />
           <div className="p-5">
             <div className="flex items-center mb-3">{pole.icon}</div>
             <h2 className="text-xl font-bold mb-2">{pole.name}</h2>
-            <p className="mb-3">{pole.description}</p>
-            <ul className="list-disc ml-5 mb-3">
-              {pole.actions.map((action, idx) => (
-                <li key={idx}>{action}</li>
+            <p>{pole.description}</p>
+            <ul>
+              {pole.actions.map((action, i) => (
+                <li key={i}>{action}</li>
               ))}
             </ul>
-            <a
-              href={pole.link}
-              className="inline-block mt-2 px-4 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition"
-            >
-              En savoir plus
-            </a>
           </div>
         </div>
       ))}
@@ -34,6 +30,7 @@ const PolesDisplay: React.FC<PolesDisplayProps> = ({ lang = "fr" }) => {
 };
 
 export default PolesDisplay;
+
 
 
 

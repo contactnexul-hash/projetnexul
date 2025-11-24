@@ -1,5 +1,5 @@
 import React from "react";
-import Poles from "./components/Poles";
+import Poles from "./components/Poles.jsx";
 
 export default function Home() {
   return (

@@ -99,4 +99,8 @@ export default function VolunteerPage() {
     </div>
   );
 }
+// Ajout pour corriger le build
+export function submitVolunteer(data: any) {
+  console.log("Volunteer submitted:", data);
+}
 

@@ -1,14 +1,36 @@
-"use client";
-import { Something } from './actions';
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { submitVolunteer } from "./actions/actions";
-import Image from "next/image";
+"use client"; 
+/**
+ * Ce fichier est un composant CLIENT.
+ * Il gère l'affichage, les interactions utilisateur
+ * et les animations.
+ *
+ * Tout ce qui touche à :
+ *   - useState
+ *   - framer motion
+ *   - onClick
+ *   - Rendering UI
+ * doit être dans un client component.
+ */
+
+import { motion } from "framer-motion"; // animations
+import { useState } from "react";       // état React
+import { submitVolunteer } from "./actions"; 
+/**
+ * Import CORRECT :
+ * Le fichier actions.ts est dans le même dossier.
+ * Donc le bon chemin est "./actions"
+ * et NON "./actions/actions"
+ */
+
+import Image from "next/image"; // si tu veux des images
 
 export default function VolunteerPage() {
-  const [loading, setLoading] = useState(false);
+
+  // --- ÉTATS DU COMPOSANT ---
+  const [loading, setLoading] = useState(false); 
   const [done, setDone] = useState(false);
 
+  // --- LISTE D'ACTIONS ---
   const actions = [
     "Aider dans une banque alimentaire",
     "Distribuer des repas aux sans-abri",
@@ -19,89 +41,62 @@ export default function VolunteerPage() {
     "Participer à des événements solidaires",
     "Aider à organiser des collectes",
     "Soutenir les personnes âgées",
-    "Aider dans les refuges animaux",
+    "Aider dans les refuges",
   ];
 
-  async function handleSubmit(formData: FormData) {
+  // --- FONCTION QUI APPELLE L’ACTION SERVEUR ---
+  const handleSubmit = async (action: string) => {
     setLoading(true);
-    const res = await submitVolunteer(formData);
+
+    /**
+     * submitVolunteer() est une Server Action.
+     * Elle est exécutée côté serveur, jamais côté client,
+     * donc elle DOIT être dans un fichier avec "use server".
+     */
+    await submitVolunteer(action);
+
     setLoading(false);
+    setDone(true);
 
-    if (res.success) {
-      setDone(true);
-    }
-  }
+    // message de confirmation pendant 2.5 sec
+    setTimeout(() => setDone(false), 2500);
+  };
 
+  // --- RENDU DU COMPOSANT ---
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
+    <div className="p-6">
 
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex items-center gap-4 mb-10"
-      >
-        <Image
-          src="/images/volunteer.jpg"
-          alt="Bénévolat"
-          width={80}
-          height={80}
-          className="rounded-xl object-cover shadow-lg"
-        />
-        <div>
-          <h1 className="text-4xl font-bold">Bénévolat</h1>
-          <p className="text-gray-500">Engage-toi localement, aide concrètement.</p>
-        </div>
-      </motion.div>
+      {/* TITRE */}
+      <h1 className="text-3xl font-bold mb-6">
+        Actions de bénévolat
+      </h1>
 
-      {!done ? (
-        <form action={handleSubmit} className="space-y-6">
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-gray-700"
-          >
-            Sélectionne les actions bénévoles que tu souhaites accomplir cette année.
-          </motion.p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {actions.map((action, index) => (
-              <motion.label
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                className="flex items-center gap-3 p-4 border rounded-xl shadow-sm cursor-pointer hover:bg-gray-50"
-              >
-                <input type="checkbox" name="actions" value={action} />
-                <span>{action}</span>
-              </motion.label>
-            ))}
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-3 bg-blue-600 text-white rounded-xl shadow-lg hover:bg-blue-700"
-          >
-            {loading ? "Envoi..." : "Valider mes actions"}
-          </button>
-        </form>
-      ) : (
+      {/* MESSAGE DE CONFIRMATION */}
+      {done && (
         <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="text-center py-10"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="p-4 bg-green-600 text-white rounded-lg mb-4"
         >
-          <h2 className="text-3xl font-bold text-green-600">Merci pour ton engagement !</h2>
-          <p className="text-gray-600 mt-2">
-            Tes actions bénévoles ont été enregistrées.
-          </p>
+          Merci pour votre participation ❤️
         </motion.div>
       )}
+
+      {/* LISTE DES BOUTONS */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {actions.map((action, index) => (
+          <motion.button
+            key={index}
+            onClick={() => handleSubmit(action)}
+            whileTap={{ scale: 0.9 }}
+            className="p-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600"
+            disabled={loading}
+          >
+            {loading ? "Envoi..." : action}
+          </motion.button>
+        ))}
+      </div>
     </div>
   );
 }
-
-
 

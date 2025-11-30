@@ -1,117 +1,154 @@
 "use client";
 
-import Link from "next/link";
-
-type Pole = {
-  id: number;
-  name: string;
-  description: string;
-  image: string;
-  actionLink: string;
-};
-
-const poles: Pole[] = [
-  {
-    id: 1,
-    name: "Environnement",
-    description:
-      "Actions & projets pour préserver notre planète. Plantations, nettoyages, initiatives écologiques.",
-    image: "/images/environment.png",
-    actionLink: "/poles/environment",
-  },
-  {
-    id: 2,
-    name: "Charité",
-    description:
-      "Aide aux personnes dans le besoin. Collectes, soutien humanitaire, actions solidaires.",
-    image: "/images/charity.png",
-    actionLink: "/poles/charity",
-  },
-  {
-    id: 3,
-    name: "Éducation",
-    description:
-      "Cours, ateliers, formations pour développer les compétences de chacun.",
-    image: "/images/education.png",
-    actionLink: "/poles/education",
-  },
-  {
-    id: 4,
-    name: "Innovation",
-    description:
-      "Projets technologiques, créativité, solutions modernes pour un futur meilleur.",
-    image: "/images/innovation.png",
-    actionLink: "/poles/innovation",
-  },
-  {
-    id: 5,
-    name: "Volontariat",
-    description:
-      "Donne de ton temps pour aider lors d’événements ou missions sociales.",
-    image: "/images/volunteer.png",
-    actionLink: "/poles/volunteer",
-  },
-  {
-    id: 6,
-    name: "Communauté",
-    description:
-      "Créer du lien entre les membres, organiser des rencontres et événements.",
-    image: "/images/community.png",
-    actionLink: "/poles/community",
-  },
-  {
-    id: 7,
-    name: "Tech",
-    description:
-      "Pôle informatique : développement, cybersécurité, IA, projets digitaux.",
-    image: "/images/tech.png",
-    actionLink: "/poles/tech",
-  },
-  {
-    id: 8,
-    name: "Freeze",
-    description:
-      "Organisation et gestion des événements ‘Freeze’, animations et surprises.",
-    image: "/images/freeze.png",
-    actionLink: "/poles/freeze",
-  },
-];
+import { useState } from "react";
+import styles from "../../styles/global.css"; // style existant
 
 export default function PolesPage() {
-  return (
-    <div className="min-h-screen bg-gray-100 px-6 py-10">
-      <h1 className="text-4xl font-bold text-center mb-10 text-blue-700">
-        Les Pôles Nexul
-      </h1>
+  const [validated, setValidated] = useState<number[]>([]);
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+  const poles = [
+    {
+      id: 1,
+      title: "Environnement",
+      image: "/images/poles/photo-environnement.jpg",
+      description:
+        "Agis pour la planète : énergie renouvelable, gestion des déchets et protection de la biodiversité.",
+      actions: [
+        "Énergie renouvelable",
+        "Gestion des déchets",
+        "Protection de la biodiversité",
+      ],
+    },
+    {
+      id: 2,
+      title: "Charity",
+      image: "/images/poles/photo-charity nxl.jpg",
+      description:
+        "Engage-toi dans des projets humanitaires et collectes de fonds pour impacter localement.",
+      actions: ["Collectes de fonds", "Projets humanitaires", "Bénévolat"],
+    },
+    {
+      id: 3,
+      title: "Éducation",
+      image: "/images/poles/istockphoto-education nexul.jpg",
+      description:
+        "Partage le savoir : formation, ateliers et sensibilisation des participants.",
+      actions: [
+        "Formation & e-learning",
+        "Ateliers & séminaires",
+        "Sensibilisation",
+      ],
+    },
+    {
+      id: 4,
+      title: "Innovation",
+      image: "/images/poles/photo-innovation.jpg",
+      description: "Développe des idées nouvelles, prototypes et projets R&D.",
+      actions: ["Innovation", "Prototypes", "R&D"],
+    },
+    {
+      id: 5,
+      title: "Communauté",
+      image: "/images/poles/photos nexul.webp",
+      description:
+        "Rassemble et connecte les participants : partenariats, réseaux et événements.",
+      actions: ["Rassemblements", "Partenariats", "Réseaux"],
+    },
+    {
+      id: 6,
+      title: "Bénévolat",
+      image: "/images/poles/photo-benevolat.jpg",
+      description:
+        "Participe à des missions concrètes pour soutenir la communauté.",
+      actions: ["Actions locales", "Soutien aux projets"],
+    },
+    {
+      id: 7,
+      title: "Technologie",
+      image: "/images/poles/technology.jpg",
+      description:
+        "Utilise la technologie pour impacter et développer des projets digitaux.",
+      actions: ["Projets digitaux", "Bénévolat tech"],
+    },
+  ];
+
+  const handleValidate = (poleId: number, actionIndex: number) => {
+    const key = poleId * 10 + actionIndex;
+    if (!validated.includes(key)) {
+      setValidated([...validated, key]);
+      alert("Action validée !");
+    }
+  };
+
+  return (
+    <div className="poles-container" style={{ padding: "20px" }}>
+      <h1 className="page-title">Nos Pôles</h1>
+      <div className="poles-grid" style={{ display: "flex", flexWrap: "wrap", gap: "30px" }}>
         {poles.map((pole) => (
           <div
             key={pole.id}
-            className="bg-white rounded-2xl shadow-lg p-5 hover:scale-105 transition transform"
+            className="pole-card"
+            style={{
+              width: "calc(33% - 20px)",
+              border: "1px solid #ddd",
+              borderRadius: "10px",
+              padding: "15px",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+            }}
           >
+            <h2 className="pole-title">{pole.title}</h2>
             <img
               src={pole.image}
-              alt={pole.name}
-              className="w-full h-40 object-cover rounded-xl mb-4"
+              alt={pole.title}
+              style={{ width: "100%", borderRadius: "10px" }}
             />
-
-            <h2 className="text-2xl font-semibold text-gray-800">
-              {pole.name}
-            </h2>
-
-            <p className="text-gray-600 mt-2">{pole.description}</p>
-
-            <Link
-              href={pole.actionLink}
-              className="mt-4 inline-block bg-blue-600 text-white rounded-lg px-4 py-2 hover:bg-blue-700 transition"
-            >
-              Voir ce pôle →
-            </Link>
+            <p className="pole-description">{pole.description}</p>
+            <div className="actions-list">
+              {pole.actions.map((action, index) => (
+                <div
+                  key={index}
+                  className="action-item"
+                  style={{ marginBottom: "10px", display: "flex", alignItems: "center" }}
+                >
+                  <span>{action}</span>
+                  <button
+                    style={{
+                      marginLeft: "10px",
+                      backgroundColor: "#0070f3",
+                      color: "#fff",
+                      border: "none",
+                      padding: "5px 10px",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => handleValidate(pole.id, index)}
+                  >
+                    Valider
+                  </button>
+                  {validated.includes(pole.id * 10 + index) && (
+                    <span style={{ marginLeft: "10px", color: "green", fontWeight: "bold" }}>
+                      ✔ Validée
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         ))}
+      </div>
+
+      <div className="crypto-widget" style={{ marginTop: "50px" }}>
+        <h2>Suivi Crypto en direct</h2>
+        <iframe
+          src="https://www.tradingview.com/widgetembed/?symbol=CRYPTO:BTCUSDT"
+          width="100%"
+          height="400"
+          frameBorder="0"
+          allowTransparency={true}
+        ></iframe>
       </div>
     </div>
   );
 }
+
 

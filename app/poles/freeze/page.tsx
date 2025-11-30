@@ -31,53 +31,71 @@ export default function FreezePage() {
             ou quand la <strong>liquidité générale devient instable</strong> selon un algorithme interne ;
           </li>
           <li>
-            ou quand un <strong>évènement mondial majeur</strong> (faillite d’un exchange, attaque, crash financier) provoque une panique de marché.
-          </li>
-        </ul>
+"use client";
 
-        <h2 className="text-2xl font-semibold text-blue-600 mt-6">
-          🧊 Que se passe-t-il lors du Freeze ?
-        </h2>
+import { motion } from "framer-motion";
+import Link from "next/link";
 
-        <p className="mt-2 text-gray-700">
-          Durant le Freeze, les actions suivantes sont temporairement bloquées :
+export default function FreezePage() {
+  return (
+    <div className="min-h-screen bg-gray-50 py-16 px-6">
+      <div className="max-w-4xl mx-auto text-center">
+        <motion.h1
+          className="text-4xl font-bold mb-4 text-blue-600"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          Système Freeze — Sécurité Automatique
+        </motion.h1>
+
+        <p className="text-gray-700 text-lg mb-8">
+          Le système <strong>FREEZE</strong> protège Nexul en cas d’activité anormale.
+          Dès que notre IA détecte une chute, un risque, ou un comportement
+          suspect, elle active un gel automatique des transactions pour protéger
+          les utilisateurs.
         </p>
 
-        <ul className="list-disc ml-6 mt-2 text-gray-700">
-          <li>transactions rapides</li>
-          <li>retraits importants</li>
-          <li>échanges contre des actifs externes</li>
-        </ul>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="p-6 bg-white shadow rounded-xl">
+            <h2 className="text-xl font-semibold mb-3">🔒 Protection instantanée</h2>
+            <p className="text-gray-600">
+              Le gel est déclenché en moins de 0,6 seconde grâce à un modèle
+              d’analyse temps réel.
+            </p>
+          </div>
 
-        <p className="mt-4 text-gray-700">
-          ➜ Les <strong>soldes des utilisateurs sont sécurisés</strong>  
-          et aucune perte ne peut être subie durant la période.
-        </p>
+          <div className="p-6 bg-white shadow rounded-xl">
+            <h2 className="text-xl font-semibold mb-3">📉 Chute anormale</h2>
+            <p className="text-gray-600">
+              En cas de baisse rapide du NXL ou surcharge réseau, les opérations
+              sont stoppées jusqu’à sécurisation.
+            </p>
+          </div>
 
-        <h2 className="text-2xl font-semibold text-blue-600 mt-6">
-          ⏳ Quand le Freeze se désactive ?
-        </h2>
+          <div className="p-6 bg-white shadow rounded-xl">
+            <h2 className="text-xl font-semibold mb-3">🛡 Prévention des fraudes</h2>
+            <p className="text-gray-600">
+              Toute activité suspecte déclenche un audit automatique par IA.
+            </p>
+          </div>
 
-        <p className="mt-2 text-gray-700">
-          Le Freeze se lève automatiquement lorsque :
-        </p>
-
-        <ul className="list-disc ml-6 mt-2 text-gray-700">
-          <li>la volatilité revient à un niveau normal ;</li>
-          <li>la liquidité est stabilisée ;</li>
-          <li>un minimum de 6 heures de stabilité consécutive est observé.</li>
-        </ul>
-
-        <div className="text-center mt-8">
-          <Link
-            href="/"
-            className="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
-          >
-            Retour à l'accueil
-          </Link>
+          <div className="p-6 bg-white shadow rounded-xl">
+            <h2 className="text-xl font-semibold mb-3">⚠ Zone d’alerte</h2>
+            <p className="text-gray-600">
+              Les utilisateurs sont informés immédiatement par une alerte globale.
+            </p>
+          </div>
         </div>
+
+        <Link
+          href="/poles/freeze/actions"
+          className="mt-10 inline-block bg-blue-600 text-white px-6 py-3 rounded-xl"
+        >
+          Voir les Actions Freeze
+        </Link>
       </div>
     </div>
   );
 }
+
 

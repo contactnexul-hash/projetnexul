@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { submitCommunity } from "./actions"; // <- Chemin correct, pas ./actions/actions
+import { submitCommunity } from "./actions/actions"; // <- Chemin correct, pas ./actions/actions
 
 export default function CommunityPage() {
   const [loading, setLoading] = useState(false);

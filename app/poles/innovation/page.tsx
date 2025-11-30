@@ -1,46 +1,111 @@
 "use client";
 
-import { useState } from "react";
-import Navbar from "../../components/Navbar";
-import Wallet from "../../components/Wallet";
-import CryptoLive from "../../components/CryptoLive";
 import Link from "next/link";
 
 export default function InnovationPage() {
-  const [state, setState] = useState(null);
-  const poles = ["animals","charity","education","environment","impact","innovation"];
-
   return (
-    <div style={{
-      fontFamily:'Montserrat,sans-serif',color:'#f0f0f0',backgroundColor:'#1a1a1a',padding:'20px',minHeight:'100vh'
-    }}>
-      <header style={{background:'linear-gradient(90deg,#0d0d0d,#1f1f1f)',padding:'20px',boxShadow:'0 4px 6px rgba(0,0,0,0.5)'}}>
-        <Navbar />
+    <div className="p-8 max-w-5xl mx-auto font-sans text-gray-900">
+
+      {/* TITRE */}
+      <header className="mb-10 text-center">
+        <h1 className="text-4xl font-bold mb-4">🚀 Pôle Innovation</h1>
+        <p className="text-lg text-gray-700">
+          Le pôle Innovation développe les technologies avancées de Nexul :
+          IA, blockchain, automation, cybersécurité, outils Guardian et
+          systèmes de stabilité économique comme le Freeze.
+        </p>
       </header>
 
-      <nav style={{display:'flex',gap:'15px',margin:'20px 0'}}>
-        {poles.map(p=>(
-          <Link key={p} href={"/poles/"+p} style={{color:'#00ffff',textDecoration:'none'}}>
-            {p.charAt(0).toUpperCase()+p.slice(1)}
-          </Link>
-        ))}
-      </nav>
+      {/* SECTIONS – TECHNOLOGIES */}
+      <section className="mb-10">
+        <h2 className="text-3xl font-semibold mb-4">🧠 Technologies développées</h2>
 
-      <section style={{
-        margin:'20px 0',padding:'20px',backgroundColor:'#2a2a2a',borderRadius:'12px',
-        boxShadow:'0 2px 10px rgba(0,0,0,0.3)',transition:'transform 0.3s ease, boxShadow 0.3s ease'
-      }}
-      onMouseEnter={e=>e.currentTarget.style.boxShadow='0 6px 15px rgba(0,255,255,0.5)'}
-      onMouseLeave={e=>e.currentTarget.style.boxShadow='0 2px 10px rgba(0,0,0,0.3)'}
-      >
-        <h1 style={{fontSize:'2.5rem',color:'#00ffff'}}>Innovation Pole</h1>
-        <p style={{fontSize:'1.1rem',lineHeight:'1.6'}}>
-          Toutes les actions et projets du pôle Innovation, avec style Luxe & Tech et hover premium.
+        <ul className="list-disc pl-6 space-y-3 text-gray-700">
+          <li>
+            <strong>Intelligence Artificielle Guardian</strong> – Analyse en temps réel,
+            détection de fraude, validation des actions sociales et écologiques.
+          </li>
+          <li>
+            <strong>Blockchain NexulChain</strong> – Traçabilité, preuves cryptographiques,
+            vouchers signés, réduction des fraudes.
+          </li>
+          <li>
+            <strong>Automatisation sécurisée</strong> – Vérification automatique des preuves,
+            scoring intelligent, attribution automatique des points NXL.
+          </li>
+          <li>
+            <strong>Outils anti-manipulation</strong> – Système de sécurité inspiré des marchés traditionnels.
+          </li>
+          <li>
+            <strong>Smart Contracts adaptatifs</strong> – Contractualisation autonome des missions NXL.
+          </li>
+          <li>
+            <strong>Système de réputation NXL</strong> – Score basé sur la confiance, les missions,
+            le comportement et les preuves validées.
+          </li>
+        </ul>
+      </section>
+
+      {/* SECTION — FREEZE */}
+      <section className="mb-10 bg-gray-50 p-6 rounded-xl shadow-sm">
+        <h2 className="text-3xl font-semibold mb-4">🛑 Freeze : L’innovation majeure de Nexul</h2>
+        <p className="text-gray-700 mb-4">
+          Le Freeze est une technologie unique permettant de stabiliser l’économie de Nexul.
+          Lors de mouvements extrêmes du marché crypto :
+        </p>
+
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Blocage automatique des transactions risquées</li>
+          <li>Protection contre les crashs brutaux du marché</li>
+          <li>Évite les spirales de panique</li>
+          <li>Maintient une valeur stable pour les détenteurs de NXL</li>
+          <li>Inspired by traditional finance “Circuit Breakers”</li>
+        </ul>
+
+        <p className="mt-4 text-gray-700">
+          Le Freeze est directement intégré au protocole, rendant Nexul l’un des
+          tokens les plus résilients du marché DeFi moderne.
         </p>
       </section>
 
-      <CryptoLive />
-      <Wallet />
+      {/* SECTION – PROJETS EN COURS */}
+      <section className="mb-10">
+        <h2 className="text-3xl font-semibold mb-4">🧩 Projets actuels</h2>
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Développement du Dashboard 3.0 ultra-interactif</li>
+          <li>Intégration IA pour analyser l’impact réel des utilisateurs</li>
+          <li>NFT “Proof of Action” certifiant les missions réussies</li>
+          <li>Application mobile Nexul (Android + iOS)</li>
+          <li>Version Lite pour pays émergents à faible connexion</li>
+          <li>Stable Engine : moteur anti-volatilité intelligent</li>
+        </ul>
+      </section>
+
+      {/* SECTION — RÉCOMPENSES */}
+      <section className="mb-10">
+        <h2 className="text-3xl font-semibold mb-4">🎖️ Récompenses & Avantages</h2>
+
+        <ul className="list-disc pl-6 space-y-2 text-gray-700">
+          <li>Badges Innovator & Master Innovator NXL</li>
+          <li>Accès prioritaire aux nouvelles apps Nexul</li>
+          <li>Points bonus pour participation aux tests</li>
+          <li>Tokenomics préférentielle pour les innovateurs actifs</li>
+          <li>Possibilité de co-créer des outils officiels Nexul</li>
+        </ul>
+      </section>
+
+      {/* BOUTON */}
+      <div className="text-center mt-10">
+        <Link href="/dashboard">
+          <span className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
+            Accéder au tableau de bord
+          </span>
+        </Link>
+      </div>
+
     </div>
   );
 }
+
+
+

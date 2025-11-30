@@ -1,47 +1,59 @@
 "use client";
 
-import Link from "next/link";
+import { useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { submitCommunity } from "./actions"; // <- Chemin correct, pas ./actions/actions
 
 export default function CommunityPage() {
+  const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
+
+  const actions = [
+    "Organiser un événement communautaire",
+    "Participer à une collecte",
+    "Soutenir un projet local",
+    "Aider des associations",
+  ];
+
+  const handleSubmit = async (action: string) => {
+    setLoading(true);
+    await submitCommunity(action);
+    setLoading(false);
+    setDone(true);
+    setTimeout(() => setDone(false), 2500);
+  };
+
   return (
-    <div className="p-8 max-w-5xl mx-auto font-sans text-gray-900">
-      <h1 className="text-4xl font-bold mb-6 text-blue-600">Pôle Communauté</h1>
+    <div className="p-6">
+      <h1 className="text-3xl font-bold mb-6">Actions Communauté</h1>
 
-      <img
-        src="/images/community.png"
-        alt="Communauté"
-        className="w-full max-w-2xl mb-6 rounded-lg shadow-lg"
-      />
+      {done && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="p-4 bg-green-600 text-white rounded-lg mb-4"
+        >
+          Merci pour votre participation ❤️
+        </motion.div>
+      )}
 
-      <p className="mb-4">
-        Le pôle Communauté rassemble tous les utilisateurs de Nexul pour créer un réseau actif,
-        partager des idées, et coordonner des actions sociales et environnementales.
-      </p>
-
-      <h2 className="text-2xl font-semibold mt-6 mb-2">🌐 Actions disponibles</h2>
-      <ul className="list-disc pl-6 mb-4">
-        <li>Création et participation à des groupes thématiques</li>
-        <li>Partage de contenus et expériences liées aux causes sociales</li>
-        <li>Organisation d’événements en ligne et hors-ligne</li>
-        <li>Échanges de ressources et opportunités entre membres</li>
-        <li>Tableaux de classement et récompenses pour les membres actifs</li>
-      </ul>
-
-      <h2 className="text-2xl font-semibold mt-6 mb-2">🎯 Impact mesurable</h2>
-      <ul className="list-disc pl-6 mb-4">
-        <li>Engagement communautaire suivi via action points</li>
-        <li>Nombre d’événements et initiatives participatives</li>
-        <li>Badge Nexul pour les contributeurs les plus actifs</li>
-      </ul>
-
-      <Link
-        href="/"
-        className="inline-block mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition"
-      >
-        Retour à l’accueil
-      </Link>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {actions.map((action, index) => (
+          <motion.button
+            key={index}
+            onClick={() => handleSubmit(action)}
+            whileTap={{ scale: 0.9 }}
+            className="p-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600"
+            disabled={loading}
+          >
+            {loading ? "Envoi..." : action}
+          </motion.button>
+        ))}
+      </div>
     </div>
   );
 }
+
 
 

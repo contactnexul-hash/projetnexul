@@ -1,71 +1,61 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { submitInnovation } from "./actions";
+import Image from "next/image";
 
-export default function InnovationActions() {
+export default function InnovationPage() {
+  const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
+
   const actions = [
-    {
-      id: 1,
-      title: "Proposer une idée innovante",
-      description: "Soumettez une idée créative pouvant améliorer le quotidien ou les services Nexul.",
-      points: 8,
-    },
-    {
-      id: 2,
-      title: "Participer à un atelier innovation",
-      description: "Rejoignez un atelier collaboratif pour créer de nouvelles solutions.",
-      points: 10,
-    },
-    {
-      id: 3,
-      title: "Tester un prototype",
-      description: "Aidez à tester et améliorer un prototype technologique avant son lancement.",
-      points: 6,
-    },
+    "Développer un projet Web3",
+    "Créer un prototype NFT",
+    "Former à la blockchain",
+    "Participer à un hackathon",
+    "Créer un outil technologique pour l'impact",
   ];
 
+  const handleSubmit = async (action: string) => {
+    setLoading(true);
+    await submitInnovation(action);
+    setLoading(false);
+    setDone(true);
+    setTimeout(() => setDone(false), 2500);
+  };
+
   return (
-    <div style={{ padding: 20 }}>
-      <h1 style={{ textAlign: "center", marginBottom: 20 }}>Actions - Innovation</h1>
+    <div className="p-6">
+      <h1 className="text-3xl font-bold mb-6">Pôle Innovation / Tech</h1>
 
-      <main>
-        {actions.map((action) => (
-          <motion.div
-            key={action.id}
-            whileHover={{ scale: 1.02 }}
-            style={{
-              padding: 20,
-              marginBottom: 20,
-              borderRadius: 10,
-              background: "#f0f0f0",
-            }}
+      {done && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="p-4 bg-green-600 text-white rounded-lg mb-4"
+        >
+          Merci pour votre participation ❤️
+        </motion.div>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {actions.map((action, index) => (
+          <motion.button
+            key={index}
+            onClick={() => handleSubmit(action)}
+            whileTap={{ scale: 0.9 }}
+            className="p-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600"
+            disabled={loading}
           >
-            <h2>{action.title}</h2>
-            <p>{action.description}</p>
-            <button
-              style={{
-                marginTop: 10,
-                padding: "10px 20px",
-                cursor: "pointer",
-              }}
-            >
-              Valider & gagner {action.points} NXL
-            </button>
-          </motion.div>
+            {loading ? "Envoi..." : action}
+          </motion.button>
         ))}
-      </main>
-
-      <footer style={{ textAlign: "center", marginTop: 40 }}>
-        <Link href="/poles/innovation">
-          <span style={{ textDecoration: "underline", cursor: "pointer" }}>
-            Retour au pôle Innovation
-          </span>
-        </Link>
-      </footer>
+      </div>
     </div>
   );
 }
+
 
 
 

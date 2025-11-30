@@ -2,29 +2,23 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { submitVolunteer } from "./actions"; // <- Import correct
+import { submitAnimal } from "./actions";
 import Image from "next/image";
 
-export default function VolunteerPage() {
+export default function AnimalPage() {
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
 
   const actions = [
-    "Aider dans une banque alimentaire",
-    "Distribuer des repas aux sans-abri",
-    "Participer à des maraudes",
-    "Nettoyer des espaces publics",
-    "Donner des cours de soutien",
-    "Assister des associations locales",
-    "Participer à des événements solidaires",
-    "Aider à organiser des collectes",
-    "Soutenir les personnes âgées",
-    "Aider dans les refuges",
+    "Aider un refuge pour animaux",
+    "Participer à une collecte pour animaux",
+    "Promouvoir l’adoption responsable",
+    "Soutenir des associations locales pour animaux",
   ];
 
   const handleSubmit = async (action: string) => {
     setLoading(true);
-    await submitVolunteer(action); // Appel Server Action
+    await submitAnimal(action);
     setLoading(false);
     setDone(true);
     setTimeout(() => setDone(false), 2500);
@@ -32,7 +26,7 @@ export default function VolunteerPage() {
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6">Actions de bénévolat</h1>
+      <h1 className="text-3xl font-bold mb-6">Actions Animaux</h1>
       {done && (
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -58,5 +52,3 @@ export default function VolunteerPage() {
     </div>
   );
 }
-
-

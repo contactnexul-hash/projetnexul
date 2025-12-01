@@ -4,6 +4,7 @@ import '../lib/charts';
 
 export default function ChartClientWrapper({ type, data, options }) {
   const [ChartComponent, setChartComponent] = useState(null);
+
   useEffect(() => {
     if (type === 'Line') {
       setChartComponent(() =>
@@ -15,6 +16,7 @@ export default function ChartClientWrapper({ type, data, options }) {
       );
     }
   }, [type]);
+
   if (!ChartComponent) return null;
   return <ChartComponent data={data} options={options} />;
 }

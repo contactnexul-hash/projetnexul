@@ -1,3 +1,4 @@
+import ChartClientWrapper from './ChartClientWrapper';
 import "../lib/charts";
 import "../lib/charts";
 import "../lib/charts";

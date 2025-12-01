@@ -1,3 +1,10 @@
+"use client";
+
+
+
+
+
+
 export default function ImpactPage() {
   return (
     <div className="min-h-screen bg-indigo-900 text-white px-6 py-20">

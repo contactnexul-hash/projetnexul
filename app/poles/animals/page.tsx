@@ -1,8 +1,15 @@
 "use client";
 
+
+
+
+
+
+
+
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { submitAnimal } from "./actions/actions";
+import { submitAnimals } from "./actions";
 
 export default function AnimalsPage() {
   const [loading, setLoading] = useState(false);
@@ -17,7 +24,7 @@ export default function AnimalsPage() {
 
   const handleSubmit = async (action: string) => {
     setLoading(true);
-    await submitAnimal(action);
+    await submitAnimals(action);
     setLoading(false);
     setDone(true);
     setTimeout(() => setDone(false), 2500);

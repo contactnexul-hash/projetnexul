@@ -1,154 +1,37 @@
-"use client";
+import Image from 'next/image';
 
-import { useState } from "react";
-import styles from "../../styles/global.css"; // style existant
+const poles = [
+  { name: 'Animals', desc: "Protection et bien-être des animaux", query: 'animals' },
+  { name: 'Charity', desc: "Soutien ciblé aux causes qui comptent", query: 'charity' },
+  { name: 'Community', desc: "Rassemblements, partenariats, réseaux", query: 'community' },
+  { name: 'Culture', desc: "Promotion des arts et de la culture", query: 'culture' },
+  { name: 'Education', desc: "Programmes et formations pour tous", query: 'education' },
+  { name: 'Environment', desc: "Actions & projets pour préserver notre planète", query: 'environment' },
+  { name: 'Finance', desc: "Solutions financières pour l'impact", query: 'finance' },
+  { name: 'Freeze', desc: "Freeze automatique en cas de chute ou problème", query: 'security' },
+  { name: 'Health', desc: "Santé et bien-être des populations", query: 'health' },
+  { name: 'Impact', desc: "Mesure & suivi des impacts positifs", query: 'impact' },
+  { name: 'Innovation', desc: "Tech & Web3 pour l'impact", query: 'innovation' },
+  { name: 'Tech', desc: "Technologie et infrastructure", query: 'technology' },
+  { name: 'Volunteer', desc: "Engage-toi, impacte localement", query: 'volunteer' },
+];
 
-export default function PolesPage() {
-  const [validated, setValidated] = useState<number[]>([]);
-
-  const poles = [
-    {
-      id: 1,
-      title: "Environnement",
-      image: "/images/poles/photo-environnement.jpg",
-      description:
-        "Agis pour la planète : énergie renouvelable, gestion des déchets et protection de la biodiversité.",
-      actions: [
-        "Énergie renouvelable",
-        "Gestion des déchets",
-        "Protection de la biodiversité",
-      ],
-    },
-    {
-      id: 2,
-      title: "Charity",
-      image: "/images/poles/photo-charity nxl.jpg",
-      description:
-        "Engage-toi dans des projets humanitaires et collectes de fonds pour impacter localement.",
-      actions: ["Collectes de fonds", "Projets humanitaires", "Bénévolat"],
-    },
-    {
-      id: 3,
-      title: "Éducation",
-      image: "/images/poles/istockphoto-education nexul.jpg",
-      description:
-        "Partage le savoir : formation, ateliers et sensibilisation des participants.",
-      actions: [
-        "Formation & e-learning",
-        "Ateliers & séminaires",
-        "Sensibilisation",
-      ],
-    },
-    {
-      id: 4,
-      title: "Innovation",
-      image: "/images/poles/photo-innovation.jpg",
-      description: "Développe des idées nouvelles, prototypes et projets R&D.",
-      actions: ["Innovation", "Prototypes", "R&D"],
-    },
-    {
-      id: 5,
-      title: "Communauté",
-      image: "/images/poles/photos nexul.webp",
-      description:
-        "Rassemble et connecte les participants : partenariats, réseaux et événements.",
-      actions: ["Rassemblements", "Partenariats", "Réseaux"],
-    },
-    {
-      id: 6,
-      title: "Bénévolat",
-      image: "/images/poles/photo-benevolat.jpg",
-      description:
-        "Participe à des missions concrètes pour soutenir la communauté.",
-      actions: ["Actions locales", "Soutien aux projets"],
-    },
-    {
-      id: 7,
-      title: "Technologie",
-      image: "/images/poles/technology.jpg",
-      description:
-        "Utilise la technologie pour impacter et développer des projets digitaux.",
-      actions: ["Projets digitaux", "Bénévolat tech"],
-    },
-  ];
-
-  const handleValidate = (poleId: number, actionIndex: number) => {
-    const key = poleId * 10 + actionIndex;
-    if (!validated.includes(key)) {
-      setValidated([...validated, key]);
-      alert("Action validée !");
-    }
-  };
-
+export default function Poles() {
   return (
-    <div className="poles-container" style={{ padding: "20px" }}>
-      <h1 className="page-title">Nos Pôles</h1>
-      <div className="poles-grid" style={{ display: "flex", flexWrap: "wrap", gap: "30px" }}>
-        {poles.map((pole) => (
-          <div
-            key={pole.id}
-            className="pole-card"
-            style={{
-              width: "calc(33% - 20px)",
-              border: "1px solid #ddd",
-              borderRadius: "10px",
-              padding: "15px",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-            }}
-          >
-            <h2 className="pole-title">{pole.title}</h2>
-            <img
-              src={pole.image}
-              alt={pole.title}
-              style={{ width: "100%", borderRadius: "10px" }}
-            />
-            <p className="pole-description">{pole.description}</p>
-            <div className="actions-list">
-              {pole.actions.map((action, index) => (
-                <div
-                  key={index}
-                  className="action-item"
-                  style={{ marginBottom: "10px", display: "flex", alignItems: "center" }}
-                >
-                  <span>{action}</span>
-                  <button
-                    style={{
-                      marginLeft: "10px",
-                      backgroundColor: "#0070f3",
-                      color: "#fff",
-                      border: "none",
-                      padding: "5px 10px",
-                      borderRadius: "5px",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => handleValidate(pole.id, index)}
-                  >
-                    Valider
-                  </button>
-                  {validated.includes(pole.id * 10 + index) && (
-                    <span style={{ marginLeft: "10px", color: "green", fontWeight: "bold" }}>
-                      ✔ Validée
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
+    <div className="space-y-6">
+      <h1 className="text-4xl font-bold text-accent">Nos Pôles</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {poles.map(p => (
+          <div key={p.name} className="bg-secondary rounded shadow p-4">
+            <Image src={`https://source.unsplash.com/800x450/?${p.query}`} alt={p.name} width={800} height={450} className="rounded" />
+            <h2 className="text-2xl font-bold text-accent mt-3">{p.name}</h2>
+            <p className="text-graylight mt-1">{p.desc}</p>
           </div>
         ))}
-      </div>
-
-      <div className="crypto-widget" style={{ marginTop: "50px" }}>
-        <h2>Suivi Crypto en direct</h2>
-        <iframe
-          src="https://www.tradingview.com/widgetembed/?symbol=CRYPTO:BTCUSDT"
-          width="100%"
-          height="400"
-          frameBorder="0"
-          allowTransparency={true}
-        ></iframe>
       </div>
     </div>
   );
 }
+
 
 

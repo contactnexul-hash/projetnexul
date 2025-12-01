@@ -1,5 +1,12 @@
 "use client";
 
+
+
+
+
+
+
+
 export default function TechPage() {
   return (
     <div className="p-8 max-w-5xl mx-auto font-sans text-gray-900">

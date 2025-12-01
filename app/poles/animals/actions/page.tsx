@@ -1,8 +1,15 @@
 "use client";
 
+
+
+
+
+
+
+
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { submitAnimal } from "./actions";
+import { submitAnimals } from "../actions";
 import Image from "next/image";
 
 export default function AnimalPage() {
@@ -18,7 +25,7 @@ export default function AnimalPage() {
 
   const handleSubmit = async (action: string) => {
     setLoading(true);
-    await submitAnimal(action);
+    await submitAnimals(action);
     setLoading(false);
     setDone(true);
     setTimeout(() => setDone(false), 2500);

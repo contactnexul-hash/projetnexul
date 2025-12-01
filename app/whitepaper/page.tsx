@@ -1,17 +1,12 @@
-"use client";
-
-export default function WhitePaper() {
+export default function Whitepaper() {
   return (
-    <div className="min-h-screen p-6 bg-gray-50">
-      <h1 className="text-3xl font-bold mb-4">Livre Blanc Nexul</h1>
-      <iframe
-        src="/docs/livreblanc.pdf"
-        width="100%"
-        height="800px"
-        className="border rounded-lg shadow-lg"
-      ></iframe>
+    <div>
+      <h1 className="text-4xl font-bold text-accent mb-4">Livre blanc (Whitepaper)</h1>
+      <p>Consulte et télécharge le livre blanc officiel de Nexul.</p>
+      <a className="inline-block mt-4 underline text-accent" href="/docs/livreblanc.pdf" target="_blank" rel="noreferrer">Télécharger le Whitepaper</a>
     </div>
   );
 }
+
 
 

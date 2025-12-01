@@ -1,8 +1,15 @@
 "use client";
 
+
+
+
+
+
+
+
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { submitInnovation } from "./actions";
+import { submitInnovation } from "../actions";
 import Image from "next/image";
 
 export default function InnovationPage() {

@@ -1,12 +1,17 @@
+import "../styles/global.css";
+import { ReactNode } from "react";
+
 export const metadata = {
-  title: "Nexul",
-  description: "Projet Nexul",
+  title: "Nexul — Global Ecosystem",
+  description: "Nexul: Next generation Web3 ecosystem",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="fr">
-      <body>{children}</body>
+    <html lang="en">
+      <body className="bg-black text-white">
+        {children}
+      </body>
     </html>
   );
 }

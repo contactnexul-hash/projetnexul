@@ -1,40 +1,41 @@
-"use client";
-
-import Link from "next/link";
+'use client';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { Line } from 'react-chartjs-2';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const [cryptos, setCryptos] = useState<any[]>([]);
+  useEffect(()=>{
+    axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false')
+      .then(r=>setCryptos(r.data)).catch(()=>{});
+  },[]);
+  const chartData = {
+    labels: cryptos.map(c=>c?.symbol?.toUpperCase()),
+    datasets: [{ label: 'Price (USD)', data: cryptos.map(c=>c?.current_price), borderColor: '#f0b90b', backgroundColor: 'rgba(240,185,11,0.15)' }]
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <header className="text-center mb-12">
-        <h1 className="text-5xl font-bold">Nexul Ultimate V3</h1>
-        <p className="mt-4 text-xl">
-          Écosystème Web3 de luxe — NXL Token · NFT Pass · Education · Environnement · Impact
-        </p>
-      </header>
+    <div className="space-y-8">
+      <motion.h1 initial={{y:-30,opacity:0}} animate={{y:0,opacity:1}} className="text-5xl font-bold text-accent">Nexul — Luxe · Technologie · Impact</motion.h1>
+      <p className="text-graylight">Plateforme premium pour la charité, l'éducation et l'impact. Accède aux fonctionnalités exclusives avec ton Nexul Pass (NXL).</p>
 
-      <div className="flex flex-wrap justify-center gap-6">
-        <Link href="/dashboard" className="btn-primary">Tableau de bord</Link>
-        <Link href="/mint" className="btn-primary">Mint ton NXL</Link>
-        <Link href="/whitepaper" className="btn-primary">Livre blanc</Link>
+      <div className="flex gap-6 flex-wrap">
+        <Image src="https://source.unsplash.com/600x360/?luxury,crypto" alt="hero" width={600} height={360} />
+        <div className="flex-1">
+          <button className="mb-4">Mint ton NXL</button>
+          <button className="ml-4">Accéder au tableau de bord</button>
+          <div className="mt-6 p-4 bg-secondary rounded shadow">
+            <h3 className="text-lg font-bold">Top cryptos</h3>
+            <Line data={chartData} />
+          </div>
+        </div>
       </div>
-
-      <section className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <Link href="/poles/environment" className="pole-card">Environnement</Link>
-        <Link href="/poles/charity" className="pole-card">Charity</Link>
-        <Link href="/poles/education" className="pole-card">Éducation</Link>
-        <Link href="/poles/innovation" className="pole-card">Innovation</Link>
-        <Link href="/poles/tech" className="pole-card">Tech</Link>
-        <Link href="/poles/volunteer" className="pole-card">Bénévolat</Link>
-        <Link href="/poles/community" className="pole-card">Communauté</Link>
-        <Link href="/poles/freeze" className="pole-card">Freeze</Link>
-      </section>
-
-      <footer className="text-center mt-16 text-gray-500">
-        Nexul • © 2025 • Luxe · Technologie · Impact
-      </footer>
     </div>
   );
 }
+
 
 
 

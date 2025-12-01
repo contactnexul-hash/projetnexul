@@ -1,8 +1,15 @@
 "use client";
 
+
+
+
+
+
+
+
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { submitCommunity } from "./actions";
+import { submitCommunity } from "../actions";
 import Image from "next/image";
 
 export default function CommunityPage() {

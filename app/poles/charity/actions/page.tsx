@@ -1,52 +1,65 @@
 "use client";
 
-import Link from "next/link";
+
+
+
+
+
+
+
+
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { submitCharity } from "../actions";
 
-type Action = {
-  id: number;
-  title: string;
-  description: string;
-  reward: number; // en NXL
-};
+export default function CharityPage() {
+  const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
 
-const actions: Action[] = [
-  {
-    id: 1,
-    title: "Don alimentaire",
-    description: "Participe à la collecte et distribution de repas pour les familles dans le besoin.",
-    reward: 10,
-  },
-  {
-    id: 2,
-    title: "Soutien aux orphelinats",
-    description: "Aide les orphelinats avec des dons et du bénévolat.",
-    reward: 20,
-  },
-];
+  const actions = [
+    "Faire un don à une association",
+    "Participer à une collecte",
+    "Aider dans une soupe populaire",
+    "Organiser un événement caritatif",
+  ];
 
-export default function CharityActions() {
+  const handleSubmit = async (action: string) => {
+    setLoading(true);
+    await submitCharity(action);
+    setLoading(false);
+    setDone(true);
+    setTimeout(() => setDone(false), 2500);
+  };
+
   return (
-    <div className="p-8 max-w-5xl mx-auto">
-      {actions.map((action) => (
+    <div className="p-6">
+      <h1 className="text-3xl font-bold mb-6">Actions Caritatives</h1>
+      {done && (
         <motion.div
-          key={action.id}
-          className="mb-4 p-6 border rounded shadow hover:shadow-lg transition"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          whileHover={{ scale: 1.02 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="p-4 bg-green-600 text-white rounded-lg mb-4"
         >
-          <h2 className="text-xl font-bold mb-2">{action.title}</h2>
-          <p className="mb-2">{action.description}</p>
-          <p className="font-semibold">Récompense : {action.reward} NXL</p>
-          <Link href={`/poles/charity/actions/${action.id}`}>
-            <a className="text-blue-600 hover:underline mt-2 inline-block">Voir détails</a>
-          </Link>
+          Merci pour votre engagement ❤️
         </motion.div>
-      ))}
+      )}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {actions.map((action, index) => (
+          <motion.button
+            key={index}
+            onClick={() => handleSubmit(action)}
+            whileTap={{ scale: 0.9 }}
+            className="p-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600"
+            disabled={loading}
+          >
+            {loading ? "Envoi..." : action}
+          </motion.button>
+        ))}
+      </div>
     </div>
   );
 }
+
 
 
 

@@ -1,5 +1,12 @@
 "use client";
 
+
+
+
+
+
+
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import runFreezeDetector from "./detector";

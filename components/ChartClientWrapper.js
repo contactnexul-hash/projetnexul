@@ -7,13 +7,11 @@ export default function ChartClientWrapper({ type, data, options }) {
 
   useEffect(() => {
     if (type === 'Line') {
-      setChartComponent(() =>
-        dynamic(() => import("react-chartjs-2").then(mod => mod.Line), { ssr: false })
-      );
+      const Line = dynamic(() => import("react-chartjs-2").then(mod => mod.Line), { ssr: false });
+      setChartComponent(() => Line);
     } else if (type === 'Bar') {
-      setChartComponent(() =>
-        dynamic(() => import("react-chartjs-2").then(mod => mod.Bar), { ssr: false })
-      );
+      const Bar = dynamic(() => import("react-chartjs-2").then(mod => mod.Bar), { ssr: false });
+      setChartComponent(() => Bar);
     }
   }, [type]);
 

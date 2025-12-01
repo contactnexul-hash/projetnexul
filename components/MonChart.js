@@ -3,6 +3,7 @@ import ChartClientWrapper from './ChartClientWrapper';
 import ChartClientWrapper from './ChartClientWrapper';
 import ChartClientWrapper from './ChartClientWrapper';
 import ChartClientWrapper from './ChartClientWrapper';
+import ChartClientWrapper from './ChartClientWrapper';
 import "../lib/charts";
 import "../lib/charts";
 import "../lib/charts";
